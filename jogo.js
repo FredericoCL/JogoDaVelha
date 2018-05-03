@@ -45,6 +45,8 @@ $(document).ready(function(){
 
 	$('.jogada').click(function(){
 		var id_campo_clicado = this.id;
+		//Desabilitando a possibilidade de clicar em um campo já clicado
+		$('#'+id_campo_clicado).off();
 		jogada(id_campo_clicado);
 	});
 
