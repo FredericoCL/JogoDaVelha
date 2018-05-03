@@ -94,13 +94,38 @@ $(document).ready(function(){
 		}
 		ganhador(pontos);
 
+		//Verifica na Vertical
+		for (var l = 1; l <= 3; l++) {
+			pontos = 0;
+
+			pontos = pontos += matriz_jogo['a'][l];
+			pontos = pontos += matriz_jogo['b'][l];
+			pontos = pontos += matriz_jogo['c'][l];
+
+			ganhador(pontos);
+		}
+
+		//Verifica na Diagonal
+		pontos = 0;
+		pontos = matriz_jogo['a'][1] + matriz_jogo['b'][2] + matriz_jogo['c'][3];
+		ganhador(pontos);
+
+		pontos = 0;
+		pontos = matriz_jogo['a'][3] + matriz_jogo['b'][2] + matriz_jogo['c'][1];
+		ganhador(pontos);
+
 	}
 
 	function ganhador(pontos){
 		if (pontos == -3) {
-			alert('Jogador 1 é o Vencedor');
+			var jogada_1 = $('#entrada_nome_jogador_1').val();
+			alert(jogada_1 + ' é o Vencedor');
+			$('.jogada').off();
+
 		} else if(pontos == 3) {
-			alert('Jogador 2 é o Vencedor');
+			var jogada_2 = $('#entrada_nome_jogador_2').val();
+			alert(jogada_2 + ' é o Vencedor');
+			$('.jogada').off();
 		}
 	}
 
