@@ -1,6 +1,22 @@
 var rodada = 1;
 var matriz_jogo = Array(3);
 
+matriz_jogo['a'] = Array(3);
+matriz_jogo['b'] = Array(3);
+matriz_jogo['c'] = Array(3);
+
+matriz_jogo['a'][1] = 0;
+matriz_jogo['a'][2] = 0;
+matriz_jogo['a'][3] = 0;
+
+matriz_jogo['b'][1] = 0;
+matriz_jogo['b'][2] = 0;
+matriz_jogo['b'][3] = 0;
+
+matriz_jogo['c'][1] = 0;
+matriz_jogo['c'][2] = 0;
+matriz_jogo['c'][3] = 0;
+
 $(document).ready(function(){
 
 	//Função para iniciar o jogo quando clicado o botão iniciar
@@ -48,6 +64,44 @@ $(document).ready(function(){
 
 		$('#'+id).css('background-image', icone);
 
+		var linha_coluna = id.split('-');
+
+		//Preenchimento da Matriz com os Pontos do Jogador A (-1) e Jogador B(1)
+		matriz_jogo[linha_coluna[0]][linha_coluna[1]] = ponto;
+
+		verifica_combinacao();
+
+	}
+
+	function verifica_combinacao(){
+
+		//Verifica na Horizontal
+		var pontos = 0;
+		for (var i = 1; i <= 3; i++) {
+			pontos = pontos + matriz_jogo['a'][i];
+		}
+		ganhador(pontos);
+
+		pontos = 0;
+		for (var i = 1; i <= 3; i++) {
+			pontos = pontos + matriz_jogo['b'][i];
+		}
+		ganhador(pontos);
+
+		pontos = 0;
+		for (var i = 1; i <= 3; i++) {
+			pontos = pontos + matriz_jogo['c'][i];
+		}
+		ganhador(pontos);
+
+	}
+
+	function ganhador(pontos){
+		if (pontos == -3) {
+			alert('Jogador 1 é o Vencedor');
+		} else if(pontos == 3) {
+			alert('Jogador 2 é o Vencedor');
+		}
 	}
 
 });
